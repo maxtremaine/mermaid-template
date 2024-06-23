@@ -1,16 +1,18 @@
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
 
-// Expects a list of strings called "tables"
+/**
+ * This loop expects the following when imported into an html file:
+ * - A list of strings to identify the tables.
+ * - Corresponding .mermaid files in a data directory.
+ * - Corresponding <pre> tags with id matching table name.
+ */
 for (const table of tables) {
-  // Expects file name to match the table name.
   fetch(`/data/${table}.mermaid`)
     .then((response) => response.text())
     .then((text) => {
-      // Expects the pre tag id to match table name.
       document.getElementById(table).innerHTML = text;
     })
     .then(() => {
-      // Runs mermaid for the specific table.
       mermaid.run({
         nodes: [document.getElementById(table)],
       });

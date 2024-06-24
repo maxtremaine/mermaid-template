@@ -10,5 +10,6 @@ for (const graph of document.getElementsByTagName("pre")) {
       mermaid.run({
         nodes: [graph],
       });
-    });
+    })
+    .catch(console.error);
 }
